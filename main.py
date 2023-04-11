@@ -10,8 +10,7 @@ def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     btn1 = types.KeyboardButton("Открыть сайт🌐")
     btn2 = types.KeyboardButton("Найти товар🔎")
-    btn3 = types.KeyboardButton("Калькулятор резисторов")
-    markup.add(btn1, btn2, btn3)
+    markup.add(btn1, btn2)
     hello = f'Привет, {message.from_user.first_name}! Я тестовый бот. Что ты хочешь сделать?'
     bot.send_message(message.chat.id, hello, reply_markup=markup)
 
@@ -22,6 +21,8 @@ def get_user_text(message):
     elif message.text == 'Найти товар🔎':
         msg_find = bot.send_message(message.chat.id, 'Что ищете?')
         bot.register_next_step_handler(msg_find, find)
+    else:
+        bot.send_message(message.chat.id, 'Я тебя не понимаю')
 
 
 
